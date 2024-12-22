@@ -8,6 +8,11 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: appColors.white,
   },
 
+  row: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+
   text: {
     fontFamily: appInfos.fontFamilies.fontBd,
     fontSize: 14,
@@ -46,6 +51,12 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#3d56f0',
+    borderRadius: 100,
+  },
+
+  tag: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
     borderRadius: 100,
   },
 });

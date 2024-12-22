@@ -1,14 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
 
-import {StatusBar, TouchableOpacity, View} from 'react-native';
-import {globalStyles} from '../../styles/globalStyles';
-import {appColors} from '../../constants/appColors';
 import {Row, Space, Text} from '@bsdaoquang/rncomponent';
-import {HambergerMenu, Notification} from 'iconsax-react-native';
-import {appInfos} from '../../constants/appInfos';
-import {CircleContainer} from '../../components';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {
+  HambergerMenu,
+  Notification,
+  SearchNormal1,
+  Sort,
+} from 'iconsax-react-native';
 import React from 'react';
+import {StatusBar, TouchableOpacity, View} from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {CircleContainer, TagComponent} from '../../components';
+import {appColors} from '../../constants/appColors';
+import {appInfos} from '../../constants/appInfos';
+import {globalStyles} from '../../styles/globalStyles';
 
 const HomeScreen = ({navigation}: any) => {
   return (
@@ -70,6 +75,57 @@ const HomeScreen = ({navigation}: any) => {
               />
             </View>
           </CircleContainer>
+        </Row>
+        <Space height={20} />
+        <Row>
+          <Row
+            onPress={() =>
+              navigation.navigate('SearchScreen', {
+                isFilter: false,
+              })
+            }
+            styles={{flex: 1}}
+            alignItems="center"
+            justifyContent="flex-start">
+            <SearchNormal1
+              variant="TwoTone"
+              color={appColors.white}
+              size={20}
+            />
+            <View
+              style={{
+                backgroundColor: appColors.grey2,
+                width: 1,
+                height: 20,
+                marginHorizontal: 10,
+              }}
+            />
+            <Text
+              styles={{
+                flex: 1,
+              }}
+              size={18}
+              text="Search..."
+              color={appColors.grey2}
+              flex={1}
+            />
+          </Row>
+          <TagComponent
+            bgColor="#5d56f3"
+            styles={{alignItems: 'center'}}
+            onPress={() =>
+              navigation.navigate('SearchScreen', {
+                isFilter: true,
+              })
+            }
+            icon={
+              <CircleContainer color="#b1aefa" size={20}>
+                <Sort size={16} color="#5d56f3" />
+              </CircleContainer>
+            }
+            label="Filters"
+            textColor={appColors.grey2}
+          />
         </Row>
       </View>
       <View style={{flex: 1, backgroundColor: appColors.white}}></View>
