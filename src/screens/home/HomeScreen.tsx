@@ -172,7 +172,7 @@ const HomeScreen = ({navigation}: any) => {
       <Space height={30} />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{flex: 1, backgroundColor: appColors.white}}>
+        style={{flex: 1, backgroundColor: appColors.white, marginTop: 14}}>
         <TabbarComponent title="Upcoming Events" onPress={() => {}} />
         <FlatList
           showsHorizontalScrollIndicator={false}

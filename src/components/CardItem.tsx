@@ -9,6 +9,17 @@ import {Location} from 'iconsax-react-native';
 import {appColors} from '../constants/appColors';
 import {ImageBackground} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
+type RootStackParamList = {
+  EventDetails: {item: EventModel};
+};
+
+type EventDetailsNavigationProps = NativeStackNavigationProp<
+  RootStackParamList,
+  'EventDetails'
+>;
 
 interface Props {
   item: EventModel;
@@ -18,7 +29,7 @@ interface Props {
 const CardItem = (props: Props) => {
   const {item, type} = props;
 
-  console.log(item);
+  const navigation = useNavigation<EventDetailsNavigationProps>();
 
   return (
     <CardContainer
@@ -28,7 +39,7 @@ const CardItem = (props: Props) => {
         position: 'relative',
         padding: 10,
       }}
-      onPress={() => {}}>
+      onPress={() => navigation.navigate('EventDetails', {item})}>
       <ImageBackground
         resizeMode="cover"
         imageStyle={{
