@@ -4,11 +4,11 @@ import React, {ReactNode} from 'react';
 import {StyleProp, TouchableOpacity, ViewStyle} from 'react-native';
 import {globalStyles} from '../styles/globalStyles';
 import {appColors} from '../constants/appColors';
+import {appInfos} from '../constants/appInfos';
 
 interface Props {
   icon?: ReactNode;
   label: string;
-  color?: string;
   onPress?: () => void;
   children?: ReactNode;
   textColor?: string;
@@ -17,8 +17,7 @@ interface Props {
 }
 
 const TagComponent = (props: Props) => {
-  const {icon, label, color, styles, onPress, children, textColor, bgColor} =
-    props;
+  const {icon, label, styles, onPress, children, textColor, bgColor} = props;
 
   return (
     <TouchableOpacity
@@ -33,6 +32,7 @@ const TagComponent = (props: Props) => {
       ]}>
       {icon && icon}
       <Text
+        font={appInfos.fontFamilies.fontMd}
         text={label}
         color={
           textColor ? textColor : bgColor ? appColors.white : appColors.grey2
