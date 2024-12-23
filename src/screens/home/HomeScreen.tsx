@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 
-import {Row, Space, Text} from '@bsdaoquang/rncomponent';
+import {Button, Row, Space, Text} from '@bsdaoquang/rncomponent';
 import {
   HambergerMenu,
   Notification,
@@ -10,6 +10,7 @@ import {
 import React from 'react';
 import {
   FlatList,
+  Image,
   Platform,
   ScrollView,
   StatusBar,
@@ -18,6 +19,7 @@ import {
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {
+  CardContainer,
   CardItem,
   CategoriesList,
   CircleContainer,
@@ -172,6 +174,59 @@ const HomeScreen = ({navigation}: any) => {
         showsVerticalScrollIndicator={false}
         style={{flex: 1, backgroundColor: appColors.white}}>
         <TabbarComponent title="Upcoming Events" onPress={() => {}} />
+        <FlatList
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          data={Array.from({length: 5})}
+          renderItem={({item, index}) => (
+            <CardItem item={itemEvent} type="card" key={index} />
+          )}
+        />
+
+        <Space height={16} />
+
+        <CardContainer styles={{padding: 0}} color="#d6feff">
+          <Row
+            styles={{position: 'relative', paddingHorizontal: 24}}
+            justifyContent="flex-start">
+            <Row
+              styles={{flexDirection: 'column', paddingTop: 12}}
+              alignItems="flex-start">
+              <Text
+                font={appInfos.fontFamilies.fontMd}
+                text="Invite your friends"
+                size={18}
+                color={appColors.black}
+              />
+              <Space height={10} />
+              <Text text="Get $20 for ticket" />
+              <Space height={10} />
+              <Button
+                radius={6}
+                styles={{paddingVertical: 4}}
+                title="INVITE"
+                color={appColors.blue}
+                onPress={() => {}}
+              />
+            </Row>
+            <Image
+              source={require('../../assets/images/invite-image.png')}
+              width={100}
+              height={100}
+              resizeMode="cover"
+              style={{
+                position: 'absolute',
+                right: 0,
+                bottom: 0,
+                top: 0,
+              }}
+            />
+          </Row>
+        </CardContainer>
+
+        <Space height={16} />
+
+        <TabbarComponent title="Nearby You" onPress={() => {}} />
         <FlatList
           showsHorizontalScrollIndicator={false}
           horizontal

@@ -5,6 +5,7 @@ import OnboardingScreen from './auth/OnboardingScreen';
 import SignUp from './auth/SignUp';
 import SplashScreen from './auth/SplashScreen';
 import Verification from './auth/Verification';
+import EventDetails from './event/EventDetails';
 import EventScreen from './event/EventScreen';
 import SearchScreen from './event/SearchScreen';
 import HomeScreen from './home/HomeScreen';
@@ -24,4 +25,5 @@ export {
   MapScreen,
   ProfileScreen,
   SearchScreen,
+  EventDetails,
 };
