@@ -7,10 +7,12 @@ import {appInfos} from '../constants/appInfos';
 
 interface Props {
   styles?: StyleProp<ViewStyle>;
+  size?: number;
+  textSize?: number;
 }
 
 const AvatarGroup = (props: Props) => {
-  const {styles} = props;
+  const {styles, size, textSize} = props;
 
   return (
     <Row justifyContent="flex-start" styles={[{marginVertical: 10}, styles]}>
@@ -22,8 +24,8 @@ const AvatarGroup = (props: Props) => {
           height={50}
           resizeMode="cover"
           style={{
-            width: 30,
-            height: 30,
+            width: size ? size : 30,
+            height: size ? size : 30,
             borderRadius: 100,
             borderWidth: 1,
             borderColor: appColors.white,
@@ -36,7 +38,7 @@ const AvatarGroup = (props: Props) => {
         text="+20 Going"
         font={appInfos.fontFamilies.fontMd}
         color={appColors.primary3}
-        size={12}
+        size={textSize ? textSize : 12}
       />
     </Row>
   );

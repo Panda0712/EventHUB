@@ -7,7 +7,7 @@ import {
   SearchNormal1,
   Sort,
 } from 'iconsax-react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   FlatList,
   Image,
@@ -29,8 +29,43 @@ import {
 import {appColors} from '../../constants/appColors';
 import {appInfos} from '../../constants/appInfos';
 import {globalStyles} from '../../styles/globalStyles';
+import Geolocation from '@react-native-community/geolocation';
+import axios from 'axios';
+import {MapModel} from '../../models/MapModel';
 
 const HomeScreen = ({navigation}: any) => {
+  const [location, setLocation] = useState<MapModel>();
+
+  useEffect(() => {
+    Geolocation.getCurrentPosition(position => {
+      if (position.coords) {
+        reverseLocation({
+          lat: position.coords.latitude,
+          long: position.coords.longitude,
+        });
+      }
+    });
+  }, []);
+
+  const reverseLocation = async ({lat, long}: {lat: number; long: number}) => {
+    console.log(lat, long);
+
+    const api = `https://revgeocode.search.hereapi.com/v1/revgeocode?at=${lat},${long}&lang=en-US&apiKey=zjU3b47mylrKZNa3F0KXxmRxg1U-nA92OJZOihW5II0`;
+
+    try {
+      const res = await axios(api);
+
+      if (res && res.status === 200 && res.data) {
+        const items = res.data.items;
+        setLocation(items[0].address);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  console.log(location);
+
   const itemEvent = {
     title: 'International Band Music Concert',
     description:
@@ -85,12 +120,14 @@ const HomeScreen = ({navigation}: any) => {
                 />
               </Row>
               <Space height={2} />
-              <Text
-                text="New York, USA"
-                size={13}
-                font={appInfos.fontFamilies.fontMd}
-                color={appColors.white}
-              />
+              {location && (
+                <Text
+                  text={`${location.city}, ${location.countryName}`}
+                  size={13}
+                  font={appInfos.fontFamilies.fontMd}
+                  color={appColors.white}
+                />
+              )}
             </Row>
             <CircleContainer color={appColors.primary2}>
               <View>
